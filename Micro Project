@@ -1,0 +1,8 @@
+openssl rand -base64 32 > aes_key.txt 
+cat aes_key.txt 
+echo "This is a test file for AES encryption." > plaintext.txt 
+cat plaintext.txt 
+openssl enc -aes-256-cbc -salt -in plaintext.txt -out encrypted_file.bin -pass file:aes_key.txt 
+cat encrypted_file.bin 
+openssl enc -aes-256-cbc -d -in encrypted_file.bin -out decrypted_file.txt -pass file:aes_key.txt 
+cat decrypted_file.txt
